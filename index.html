@@ -695,6 +695,7 @@
 
   /* ---------- Print / PDF export (dedicated document, independent of the site layout) ---------- */
   @page{ size:A4; margin:0; }
+  @page cl{ size:A4; margin:22mm 20mm; }
   #printDoc{ display:none; }
   @media print{
     body > *:not(#printDoc){ display:none !important; }
@@ -801,6 +802,50 @@
     #printDoc .pd-footer-qr{ text-align:center; }
     #printDoc .pd-footer-qr img{ width:52pt; height:52pt; display:block; border-radius:5pt; background:#fff; padding:3pt; }
     #printDoc .pd-footer-qr div{ font-size:6.3pt; color:var(--ink-soft); margin-top:3pt; font-weight:700; }
+
+    /* ---------- Cover letter (own page master, flows across as many pages as needed) ---------- */
+    #printDoc .pd-letter{
+      page:cl;
+      break-before:page;
+      background:var(--paper);
+    }
+    #printDoc .pd-letter-head{
+      border-bottom:1.6pt solid var(--ink);
+      padding-bottom:10pt; margin-bottom:22pt;
+      break-after:avoid-page;
+    }
+    #printDoc .pd-letter-head h1{ font-size:17pt; font-weight:900; margin:0; letter-spacing:-0.01em; }
+    #printDoc .pd-letter-head .pd-letter-sub{ font-size:9pt; color:var(--ink-soft); margin-top:4pt; font-weight:700; }
+    #printDoc .pd-letter-section{ margin-bottom:22pt; }
+    #printDoc .pd-letter-section:last-child{ margin-bottom:0; }
+    #printDoc .pd-letter-section h2{
+      font-size:12pt; font-weight:800; line-height:1.4; margin:0 0 10pt;
+      break-after:avoid-page;
+    }
+    #printDoc .pd-letter-tag{
+      display:inline-block; background:var(--signal-yellow); color:var(--ink);
+      font-size:7.6pt; font-weight:800; letter-spacing:0.04em; padding:3pt 10pt;
+      border-radius:20pt; margin:0 0 8pt;
+    }
+    #printDoc .pd-letter-section p{
+      font-size:10pt; line-height:1.85; margin:0 0 10pt; color:var(--ink);
+      orphans:3; widows:3;
+    }
+    #printDoc .pd-letter-section p:last-child{ margin-bottom:0; }
+    #printDoc .pd-letter-section ol{ margin:10pt 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10pt; }
+    #printDoc .pd-letter-section ol li{
+      font-size:9.8pt; line-height:1.8; color:var(--ink); padding-left:22pt; position:relative;
+      break-inside:avoid;
+    }
+    #printDoc .pd-letter-section ol li b{ font-weight:800; }
+    #printDoc .pd-letter-section ol li .pd-li-num{
+      position:absolute; left:0; top:1pt; width:15pt; height:15pt; border-radius:50%;
+      background:var(--signal-yellow); color:var(--ink); font-size:7.4pt; font-weight:900;
+      display:flex; align-items:center; justify-content:center;
+    }
+    #printDoc .pd-letter mark{
+      background:rgba(255,213,79,0.55); color:var(--ink); padding:0.5pt 2pt; border-radius:3pt;
+    }
   }
 
 </style>
@@ -1521,6 +1566,50 @@
         <div>온라인 포트폴리오</div>
       </div>
     </footer>
+  </div>
+
+  <div class="pd-letter">
+    <header class="pd-letter-head">
+      <h1>자기소개서</h1>
+      <div class="pd-letter-sub">송수아 · SONG SOOAH</div>
+    </header>
+
+    <section class="pd-letter-section">
+      <h2><mark>질문</mark>과 <mark>융통성</mark>, 제가 지향하는 두 가지 키워드입니다.</h2>
+      <p>서로 다른 기대와 목표를 가진 이해관계자들이 모였을 때, 하나의 완성된 결과를 만들어내는 힘은 어디서 나올까요?</p>
+      <p>저는 그 답이 '서로의 필요 안에서 가장 현실적인 연결고리를 찾는 일'에 있다고 생각합니다.</p>
+      <p>비영리 단체에서 첫 직장생활을 하며, 프로젝트의 기획부터 실행, 회계, 외부 협력, 성과 측정에 이르기까지 전 과정에 참여하는 <mark>올라운더 실무자</mark>로 활동했습니다. 복잡하게 얽힌 이해관계 속에서 프로그램의 <mark>목표를 명확히</mark> 세우고 목표를 달성하기 위해 책임감 있게 프로젝트를 완수해내는 <mark>단단한 실행력</mark>과 <mark>다자간 의사소통 능력</mark>을 기를 수 있었습니다. 크로스펑셔널 구조의 조직에서 실무자로서 일해본 경험은, 주어진 업무를 처리하기 바쁜 수동적 태도에서 벗어나 사업 전체의, 더 나아가 조직 전체의 흐름과 요구를 <mark>넓은 시선</mark>으로 바라보며 내부, 외부 관계자들과 서로 필요한 것을 주고 받으며 협업할 수 있는 기초 역량을 마련하는 데 도움이 되었습니다.</p>
+      <p>다양한 나이와 직함을 가진 이해관계자들과 협업하면서, 상대가 얻고자 하는 바를 빠르게 파악하여 타협점을 도출하는 '세일즈형 커뮤니케이션' 방식을 체화했습니다. 뜻하는 대로 되지 않아 답답한 순간도 있었지만, 무작정 우리의 입장만을 피력하기보다 상대가 원하는 바가 무엇인지 먼저 분석했습니다. 우리가 제안하는 방향을 함께 이룰 때 상대 역시 원하는 바를 얻을 수 있음을 논리적으로 설득한 후, R&R과 전체 프로세스를 재정립하여 공유함으로써 불안정한 상황을 최소화하고자 노력했습니다. 실제로 후원사 2곳, 주최사 2곳, 주관사까지 5개 기관이 복잡하게 얽힌 교육 행사를 총괄할 당시, 각 조직의 요구사항에 대한 현실적인 타협안을 찾아내며 프로그램의 중심을 지키고 성공적으로 완료할 수 있었습니다.</p>
+      <p>이외에도 노인 대상 프로그램에서 참여를 설득하고 청년 봉사단을 조직·운영하며, 대상자 개개인의 참여 동기와 니즈를 우리 조직의 목표와 유기적으로 연결해 <mark>자발적 참여를 이끌어내는 소통 능력</mark>을 길렀습니다. 또한 현장에서 예기치 않은 돌발 변수가 발생했을 때 '현장의 상황과 문제, 현재까지 적용해 본 솔루션과 경과, 예상되는 다음 실행 단계'를 정교하게 언어로 정리해 <mark>상급자에게 신속히 공유</mark>하는 순발력을 훈련했습니다. 문제를 숨기지 않고 용기 있게 <mark>질문</mark>하며, 도출된 대답을 현장에 즉시 적용하는 적극적인 습관은 제가 가진 가장 핵심적인 실무 노하우입니다.</p>
+      <p>빠른 상황 판단력과 질문을 두려워하지 않는 소통 습관, 그리고 다자간 커뮤니케이션 능력은 앞으로 제가 맡을 업무를 완성도 높게 만드는 밑거름이 될 것입니다.</p>
+    </section>
+
+    <section class="pd-letter-section">
+      <h2>프로젝트 전 과정을 담당한 실무 경험을 바탕으로 역량을 길러왔습니다.</h2>
+      <ol>
+        <li><span class="pd-li-num">1</span><b>프로그램 기획 및 운영</b> — 폐지수거 어르신을 위한 청년 봉사단을 기획해 2회기 동안 총 88명의 봉사자를 모집·관리했고, 부재했던 접수·관리 시스템을 새롭게 설계해 1년간 100건 이상의 정비 성과를 달성했습니다.</li>
+        <li><span class="pd-li-num">2</span><b>이해관계자 소통</b> — 공공기관, 복지기관, 참여 대상자 등 성격이 다른 이해관계자들과 실무 소통을 경험했습니다. 기관 간 협약식과 지원사업 면접, 사업계획 논의 미팅에 직접 참여하며 소통 역량을 길렀습니다. 상대가 궁금해할 지점과 놓치면 안 되는 논의 사항을 미리 정리해 전달하는 방식으로, 텍스트·전화 기반의 의사소통 역량을 쌓아왔습니다.</li>
+        <li><span class="pd-li-num">3</span><b>현장 리스크 대응</b> — 사업 운영 중 혹은 행사 현장에서 예상치 못한 상황이 발생했을 때, 가능한 대안을 빠르게 정리하고 각 선택지의 장점과 리스크를 함께 정리해 보고해왔습니다. 결정권자가 빠르게 판단할 수 있도록 근거를 정리해 전달하는 것이 실무자의 역할이라고 생각합니다.</li>
+      </ol>
+    </section>
+
+    <section class="pd-letter-section">
+      <h2>든든한 팀원이 되겠습니다.</h2>
+      <p>5년 안에, 제 판단이 개인적인 문제해결을 넘어 <mark>조직의 성장</mark>으로 이어지는 경험을 계속해서 쌓고 싶습니다. 나아가 기획자로서 <mark>지속 가능한 콘텐츠의 가치를 증명</mark>하며 직접 투자를 유치하는 수준까지 성장하는 것이 목표입니다.</p>
+      <p>입사 초기에는 현장의 매뉴얼과 기준을 정확히 파악하는 데 집중하겠습니다. 가능한 영역과 불가능한 영역의 기준과 매커니즘을 먼저 이해해야, 돌발 상황에서도 유연하고 정확한 판단을 내릴 수 있다고 생각합니다. 이 과정에서는 부딪히지 않고서야 절대 배울 수 없기에, 두려워하지 않고 활발하게 질문하며 배울 것입니다. 첫 직장에서 경험한 다양한 프로젝트를 통해, 문제를 숨기지 않고 빠르게 질문하는 습관이 결국 저 자신뿐 아니라 조직에도 도움이 된다는 것을 배웠습니다. 이 습관을 그대로 적용하여, 처음에는 작은 판단부터 <mark>방향성을 맞추고 신뢰를 쌓는 경험</mark>을 하고 싶습니다.</p>
+      <p>제 역할이 하나의 콘텐츠를 무사히 마치는 데서 그치지 않고, 조직이 다음 단계로 나아가는 데 실질적으로 기여하는 경험을 쌓고 싶습니다. 좋은 컨텐츠를 만드는 것에서 나아가 그 컨텐츠가 지속 가능한 구조라는 것을 투자자에게 설득할 수 있는 기획자가 되고 싶습니다. 참여자에게 최고의 경험을 안겨주기 위해 우리가 함께 만든 것들을 애정하며 끝까지 완성하는 기획자로 성장하겠습니다.</p>
+    </section>
+
+    <section class="pd-letter-section">
+      <span class="pd-letter-tag">필수 문항</span>
+      <h2>최근 1년 내 방문했던 오프라인 콘텐츠 중 가장 인상 깊었던 경험과 이유</h2>
+      <p>공연, 컨퍼런스, 팝업스토어, 전시회 등 다양한 오프라인 콘텐츠를 접해보았지만, 참여자로서 <mark>'현장감'</mark>을 더욱 생생하게 느낀 컨텐츠일수록 기억에 오래 남는 것 같습니다.</p>
+      <p>다음세대재단에서 주관한 '2025 체인지온 컨퍼런스' 행사가 가장 기억에 남습니다.<br>컨퍼런스라는 학술적이고 차가운 행사 이미지에서 벗어나, 참여자들이 감정적으로 행사에 동화되어 더욱 컨퍼런스를 즐기며 더 많은 정보를 기억해가도록 하려는 장치가 인상 깊었습니다.</p>
+      <p>해당 연례 컨퍼런스는, '사회자 없는 행사 오프닝'으로 잘 알려져 있습니다.<br>본격적인 컨퍼런스 시작 전, '공부하러 온 사람들'은 관객석에 조용히 앉아 무대를 지켜봅니다.<br>적당한 조도의 조용한 컨퍼런스 홀에, 커다랗게 쓴 흰 글씨가 관객의 이목을 집중시킵니다. 아무도 마이크를 잡지 않지만, 300명의 관객이 마치 누군가의 사회를 듣고 있는 듯 웃고, 집중하고, 박수칩니다.</p>
+      <p>정면의 자막과 음악에 따라 관객들이 서로가 서로의 사회자가 되어 행사가 시작됩니다. 어느 순간 관객들은 행사에 푹 빠져 눈이 반짝거리고, 그저 '들으러 온 사람'이 아닌 '말하러 온 사람, 능동적으로 생각하러 온 사람'으로 준비됩니다.</p>
+      <p>제가 생각하는 오프라인 콘텐츠의 가장 큰 매력이자 중요한 포인트는 '같은 공간에 있는 이들이 하나가 된 것처럼 느끼도록 유도하는 것'입니다. 우리는 서로 너무 다른 생각과 방향성을 가지고 삽니다. 심지어는 가장 가까운 가족들조차 통하지 않을 때가 너무 많습니다. 그런데 한 공간에 있는 타인들이 <mark>같은 감정, 생각, 행동을 공유하게 되는 경험</mark>은, 우리에게 어떻게 보면 '필수적인 경험'이라고 생각합니다.</p>
+      <p>앞서 말씀드린 컨퍼런스 행사가 그러한 맥락에서 아주 성공적이었다고 봅니다. 비슷한 경험으로, 관객석까지 무대 연출이 적용되던 공연, 관객의 상상에 따라 캐릭터의 성별이 달라질 수도 있었던 낭독극, 직접 운영에 참여했던 행사 중 특별히 대상자의 참여도가 높았던 행사 등, 함께 하는 운영진과 참여자 모두가 융합되어 즐거움을 느낄 때 기억에 남는 행사가 된다는 것을 배웠습니다.</p>
+    </section>
   </div>
 
 </div>
